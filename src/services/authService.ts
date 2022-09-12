@@ -9,6 +9,7 @@ import { iUser } from "../types/types.js";
 async function createUser(user: iUser) {
 	const existingUser = await userRepository.findUserByEmail(user.email);
 	if (existingUser) {
+		console.log(existingUser, "user possivel");
 		throw { type: "conflict", message: "Email already registered!" };
 	}
 
@@ -35,9 +36,18 @@ async function login(login: iUser) {
 	return token;
 }
 
+async function findUserById(id: number) {
+	const user = await userRepository.findByUserId(id);
+	if (!user) {
+		throw { type: "notFound", message: "User not FounD!" };
+	}
+	return user;
+}
+
 const authService = {
 	createUser,
 	login,
+	findUserById,
 };
 
 export default authService;

@@ -12,5 +12,20 @@ model User {
   email    String @unique
   password String
 
+  Credential Credential[]
+
   @@map("users")
+}
+
+model Credential {
+  id       Int    @id @default(autoincrement())
+  title    String
+  url      String
+  username String 
+  user     User   @relation(fields: [userId], references: [id])
+  password String
+  userId Int
+
+  @@unique([title, userId])
+  @@map("credentials")
 }

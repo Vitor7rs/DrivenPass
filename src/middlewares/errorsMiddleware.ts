@@ -6,7 +6,7 @@ export function errorsMiddleware(
 	res: Response,
 	next: NextFunction
 ) {
-	console.log(err);
+	console.log(err, "EEEEEEEERRRRROOO");
 	if (err.type) {
 		return res.status(errorStatusCode(err.type)).send(err.message);
 	}
