@@ -29,7 +29,9 @@ async function login(login: iUser) {
 		throw { type: "unauthorized", message: "Invalid email or password!" };
 	}
 
-	const token = jwt.sign({ userId: user.id }, process.env.JWT_SECRET);
+	const token = jwt.sign({ userId: user.id }, process.env.JWT_SECRET, {
+		expiresIn: "1h",
+	});
 	return token;
 }
 
