@@ -3,5 +3,5 @@ import { iUser } from "../types/types";
 
 export const userSchema = Joi.object<iUser>({
 	email: Joi.string().email().required(),
-	password: Joi.string().min(10).required(),
+	password: Joi.string().min(7).required(),
 });
